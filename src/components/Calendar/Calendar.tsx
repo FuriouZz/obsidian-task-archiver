@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "preact/hooks";
 import { Calendar as Cal } from "obsidian-calendar-ui";
+// import { useApp } from "contexts/ViewContext";
 
 export default function Calendar() {
+  // const app = useApp();
   const elRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -9,8 +11,17 @@ export default function Calendar() {
     const cal = new Cal({
       target: elRef.current,
       props: {
-        // Settings
-        showWeekNums: false,
+        showWeekNums: true,
+        // sources: app.vault.getMarkdownFiles().map(() => {
+        //   return {
+        //     getDailyMetadata() {
+
+        //     },
+        //     getWeeklyMetadata() {
+
+        //     }
+        //   }
+        // })
       },
     });
 
