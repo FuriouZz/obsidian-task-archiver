@@ -19,9 +19,10 @@ export default class MyPlugin extends Plugin {
 
     this.registerView(VIEW_TYPE_JOURNAL, (leaf) => new JournalView(leaf));
 
-    this.addRibbonIcon("dice", "Activate view", () => {
-      this.activateView();
-    });
+    // this.addRibbonIcon("dice", "Activate view", () => {
+    //   this.activateView();
+    // });
+    this.activateView();
   }
 
   onunload() {
