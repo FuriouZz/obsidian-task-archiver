@@ -1,49 +1,36 @@
-import { useEffect, useRef } from "preact/hooks";
-import { Calendar as Cal, IDot } from "obsidian-calendar-ui";
-import { useApp } from "contexts/ViewContext";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { Calendar as CalendarModel } from "obsidian-calendar-ui";
+import { getDateUID } from "obsidian-daily-notes-interface";
+import { SvelteComponentTyped } from "svelte";
+import { Signal, effect } from "@preact/signals";
 
-export default function Calendar() {
-  const app = useApp();
+type CalendarModelProps = CalendarModel extends SvelteComponentTyped<infer U>
+  ? U
+  : unknown;
+
+export interface CalendarProps extends Omit<CalendarModelProps, "selectedId"> {
+  activeDay: Signal<moment.Moment | undefined>;
+}
+
+export default function Calendar({ activeDay, ...props }: CalendarProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
+  const [calendar, setCalendar] = useState<CalendarModel>();
 
   useEffect(() => {
-    if (!elRef.current) return;
+    const target = elRef.current;
+    if (!target) return;
 
-    const files = app.vault.getMarkdownFiles();
-
-    const cal = new Cal({
-      target: elRef.current,
-      props: {
-        showWeekNums: true,
-        onClickDay(day) {
-          console.log(files.filter((f) => day.isSame(f.stat.ctime, "day")));
-        },
-        sources: [
-          {
-            async getDailyMetadata(date) {
-              const file = files.find((f) => date.isSame(f.stat.ctime, "day"));
-              const dots: IDot[] = [];
-
-              if (file) {
-                dots.push({
-                  className: "hola",
-                  color: "default",
-                  isFilled: true,
-                });
-              }
-
-              return { dots };
-            },
-            async getWeeklyMetadata() {
-              return {};
-            },
-          },
-        ],
-      },
-    });
-
+    const cal = new CalendarModel({ target, props });
+    setCalendar(cal);
     return () => cal.$destroy();
   }, []);
+
+  effect(() => {
+    const day = activeDay.value;
+    if (!day) return;
+
+    calendar?.$set({ selectedId: getDateUID(day, "day") });
+  });
 
   return <div ref={elRef}></div>;
 }

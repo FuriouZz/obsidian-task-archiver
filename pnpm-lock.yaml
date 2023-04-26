@@ -1,9 +1,15 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@preact/signals':
+    specifier: ^1.1.3
+    version: 1.1.3(preact@10.13.2)
   obsidian-calendar-ui:
     specifier: ^0.3.12
     version: 0.3.12(@codemirror/state@6.2.0)(@codemirror/view@6.9.6)
+  obsidian-daily-notes-interface:
+    specifier: ^0.9.4
+    version: 0.9.4(@codemirror/state@6.2.0)(@codemirror/view@6.9.6)
   preact:
     specifier: ^10.13.2
     version: 10.13.2
@@ -327,6 +333,19 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
     dev: true
+
+  /@preact/signals-core@1.3.0:
+    resolution: {integrity: sha512-M+M3ZOtd1dtV/uasyk4SZu1vbfEJ4NeENv0F7F12nijZYedB5wSgbtZcuACyssnTznhF4ctUyrR0dZHuHfyWKA==}
+    dev: false
+
+  /@preact/signals@1.1.3(preact@10.13.2):
+    resolution: {integrity: sha512-N09DuAVvc90bBZVRwD+aFhtGyHAmJLhS3IFoawO/bYJRcil4k83nBOchpCEoS0s5+BXBpahgp0Mjf+IOqP57Og==}
+    peerDependencies:
+      preact: 10.x
+    dependencies:
+      '@preact/signals-core': 1.3.0
+      preact: 10.13.2
+    dev: false
 
   /@types/codemirror@0.0.108:
     resolution: {integrity: sha512-3FGFcus0P7C2UOGCNUVENqObEb4SFk+S8Dnxq7K6aIsLVs/vDtlangl3PEO0ykaKXyK56swVF6Nho7VsA44uhw==}
@@ -1034,6 +1053,17 @@ packages:
 
   /obsidian-daily-notes-interface@0.8.4(@codemirror/state@6.2.0)(@codemirror/view@6.9.6):
     resolution: {integrity: sha512-REKQtAuIOKDbvNH/th1C1gWmJWCP5tRn9T/mfZGZt4Zncgko7McXK0aSKFtEInipvgbZJ2nScivvyLdiWluSMw==}
+    hasBin: true
+    dependencies:
+      obsidian: github.com/obsidianmd/obsidian-api/45873db32067707d88d18dd7fa33f0e3794f546b(@codemirror/state@6.2.0)(@codemirror/view@6.9.6)
+      tslib: 2.1.0
+    transitivePeerDependencies:
+      - '@codemirror/state'
+      - '@codemirror/view'
+    dev: false
+
+  /obsidian-daily-notes-interface@0.9.4(@codemirror/state@6.2.0)(@codemirror/view@6.9.6):
+    resolution: {integrity: sha512-PILoRtZUB5wEeGnDQAPMlkVlXwDYoxkLR8Wl4STU2zLNwhcq9kKvQexiXi7sfjGlpTnL+LeAOfEVWyeVndneKg==}
     hasBin: true
     dependencies:
       obsidian: github.com/obsidianmd/obsidian-api/45873db32067707d88d18dd7fa33f0e3794f546b(@codemirror/state@6.2.0)(@codemirror/view@6.9.6)

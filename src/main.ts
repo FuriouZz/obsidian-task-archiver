@@ -1,5 +1,6 @@
+import { CALENDAR_VIEW_TYPE } from "constants.js";
 import { Plugin } from "obsidian";
-import JournalView, { VIEW_TYPE_JOURNAL } from "views/journal-view";
+import CalendarView from "view";
 
 // Remember to rename these classes and interfaces!
 
@@ -17,28 +18,27 @@ export default class MyPlugin extends Plugin {
   async onload() {
     await this.loadSettings();
 
-    this.registerView(VIEW_TYPE_JOURNAL, (leaf) => new JournalView(leaf));
+    this.registerView(CALENDAR_VIEW_TYPE, (leaf) => new CalendarView(leaf));
 
-    // this.addRibbonIcon("dice", "Activate view", () => {
-    //   this.activateView();
-    // });
-    this.activateView();
+    this.app.workspace.onLayoutReady(() => {
+      this.activateView();
+    });
   }
 
   onunload() {
-    this.app.workspace.detachLeavesOfType(VIEW_TYPE_JOURNAL);
+    this.app.workspace.detachLeavesOfType(CALENDAR_VIEW_TYPE);
   }
 
   async activateView() {
-    this.app.workspace.detachLeavesOfType(VIEW_TYPE_JOURNAL);
+    this.app.workspace.detachLeavesOfType(CALENDAR_VIEW_TYPE);
 
     await this.app.workspace.getRightLeaf(false).setViewState({
-      type: VIEW_TYPE_JOURNAL,
+      type: CALENDAR_VIEW_TYPE,
       active: true,
     });
 
     this.app.workspace.revealLeaf(
-      this.app.workspace.getLeavesOfType(VIEW_TYPE_JOURNAL)[0]
+      this.app.workspace.getLeavesOfType(CALENDAR_VIEW_TYPE)[0]
     );
   }
 
