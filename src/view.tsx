@@ -16,6 +16,7 @@ export default class CalendarView extends ItemView {
     super(leaf);
 
     this.onClickDay = this.onClickDay.bind(this);
+    this.onClickWeek = this.onClickWeek.bind(this);
     this.onOpenEntry = this.onOpenEntry.bind(this);
 
     this.registerEvent(this.app.vault.on("create", JournalStore.refresh));
@@ -42,9 +43,11 @@ export default class CalendarView extends ItemView {
       <>
         <Calendar
           showWeekNums
-          activeDay={JournalStore.day}
+          activeDay={JournalStore.date}
+          granularity={JournalStore.granularity}
           sources={sources}
           onClickDay={this.onClickDay}
+          onClickWeek={this.onClickWeek}
         />
         <List entries={JournalStore.entries} onOpenEntry={this.onOpenEntry} />
       </>,
@@ -57,7 +60,13 @@ export default class CalendarView extends ItemView {
   }
 
   onClickDay(day: moment.Moment) {
-    JournalStore.day.value = day;
+    JournalStore.granularity.value = "day";
+    JournalStore.date.value = day;
+  }
+
+  onClickWeek(day: moment.Moment) {
+    JournalStore.granularity.value = "week";
+    JournalStore.date.value = day;
   }
 
   onOpenEntry(entry: ListEntry) {

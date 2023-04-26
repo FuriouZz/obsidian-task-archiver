@@ -2,11 +2,14 @@ import { signal } from "@preact/signals";
 import { moment } from "obsidian";
 import { ListEntry } from "types";
 
-async function fetchFiles(day: moment.Moment | undefined) {
+async function fetchFiles(
+  day: moment.Moment | undefined,
+  granularity: moment.unitOfTime.StartOf
+) {
   if (!day) return [];
 
   const files = app.vault.getMarkdownFiles().filter((file) => {
-    return day.isSame(file.stat.ctime, "day");
+    return day.isSame(file.stat.ctime, granularity);
   });
 
   if (files.length === 0) return [];
@@ -23,18 +26,21 @@ async function fetchFiles(day: moment.Moment | undefined) {
 }
 
 function createJournalStore() {
-  const day = signal<moment.Moment | undefined>(undefined);
+  const date = signal<moment.Moment | undefined>(undefined);
+  const granularity = signal<"day" | "week">("day");
   const entries = signal<ListEntry[]>([]);
 
   const store = {
-    day,
+    date,
     entries,
+    granularity,
     async refresh() {
-      entries.value = await fetchFiles(day.value);
+      entries.value = await fetchFiles(date.value, granularity.value);
     },
   };
 
-  day.subscribe(store.refresh);
+  date.subscribe(store.refresh);
+  granularity.subscribe(store.refresh);
 
   return store;
 }

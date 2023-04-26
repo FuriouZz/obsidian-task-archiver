@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import { Calendar as CalendarModel } from "obsidian-calendar-ui";
-import { getDateUID } from "obsidian-daily-notes-interface";
+import { IGranularity, getDateUID } from "obsidian-daily-notes-interface";
 import { SvelteComponentTyped } from "svelte";
 import { Signal, effect } from "@preact/signals";
 
@@ -10,9 +10,14 @@ type CalendarModelProps = CalendarModel extends SvelteComponentTyped<infer U>
 
 export interface CalendarProps extends Omit<CalendarModelProps, "selectedId"> {
   activeDay: Signal<moment.Moment | undefined>;
+  granularity: Signal<IGranularity>;
 }
 
-export default function Calendar({ activeDay, ...props }: CalendarProps) {
+export default function Calendar({
+  activeDay,
+  granularity,
+  ...props
+}: CalendarProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const [calendar, setCalendar] = useState<CalendarModel>();
 
@@ -29,7 +34,7 @@ export default function Calendar({ activeDay, ...props }: CalendarProps) {
     const day = activeDay.value;
     if (!day) return;
 
-    calendar?.$set({ selectedId: getDateUID(day, "day") });
+    calendar?.$set({ selectedId: getDateUID(day, granularity.value) });
   });
 
   return <div ref={elRef}></div>;
