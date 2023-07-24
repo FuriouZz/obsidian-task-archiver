@@ -6,10 +6,10 @@ import {
   CALENDAR_TITLE,
   CALENDAR_VIEW_TYPE,
 } from "constants.js";
-import JournalStore from "store";
-import noteSource from "notes-source";
-import List from "components/List/List";
-import { ListEntry } from "types";
+import CalendarStore from "stores/CalendarStore";
+import noteSource from "sources/NoteSource";
+import TaskList from "components/TaskList/TaskList";
+import { TaskListEntry } from "types";
 
 export default class CalendarView extends ItemView {
   constructor(leaf: WorkspaceLeaf) {
@@ -19,9 +19,9 @@ export default class CalendarView extends ItemView {
     this.onClickWeek = this.onClickWeek.bind(this);
     this.onOpenEntry = this.onOpenEntry.bind(this);
 
-    this.registerEvent(this.app.vault.on("create", JournalStore.refresh));
-    this.registerEvent(this.app.vault.on("delete", JournalStore.refresh));
-    this.registerEvent(this.app.vault.on("modify", JournalStore.refresh));
+    this.registerEvent(this.app.vault.on("create", CalendarStore.refresh));
+    this.registerEvent(this.app.vault.on("delete", CalendarStore.refresh));
+    this.registerEvent(this.app.vault.on("modify", CalendarStore.refresh));
   }
 
   getViewType(): string {
@@ -43,13 +43,16 @@ export default class CalendarView extends ItemView {
       <>
         <Calendar
           showWeekNums
-          activeDay={JournalStore.date}
-          granularity={JournalStore.granularity}
+          activeDay={CalendarStore.date}
+          granularity={CalendarStore.granularity}
           sources={sources}
           onClickDay={this.onClickDay}
           onClickWeek={this.onClickWeek}
         />
-        <List entries={JournalStore.entries} onOpenEntry={this.onOpenEntry} />
+        <TaskList
+          entries={CalendarStore.entries}
+          onOpenEntry={this.onOpenEntry}
+        />
       </>,
       this.contentEl
     );
@@ -60,16 +63,16 @@ export default class CalendarView extends ItemView {
   }
 
   onClickDay(day: moment.Moment) {
-    JournalStore.granularity.value = "day";
-    JournalStore.date.value = day;
+    CalendarStore.granularity.value = "day";
+    CalendarStore.date.value = day;
   }
 
   onClickWeek(day: moment.Moment) {
-    JournalStore.granularity.value = "week";
-    JournalStore.date.value = day;
+    CalendarStore.granularity.value = "week";
+    CalendarStore.date.value = day;
   }
 
-  onOpenEntry(entry: ListEntry) {
+  onOpenEntry(entry: TaskListEntry) {
     const leaf = app.workspace.getLeaf(false);
     leaf.openFile(entry.file);
   }

@@ -8,7 +8,7 @@ type CalendarModelProps = CalendarModel extends SvelteComponentTyped<infer U>
   ? U
   : unknown;
 
-export interface CalendarProps extends Omit<CalendarModelProps, "selectedId"> {
+export interface ICalendarProps extends Omit<CalendarModelProps, "selectedId"> {
   activeDay: Signal<moment.Moment | undefined>;
   granularity: Signal<IGranularity>;
 }
@@ -17,7 +17,7 @@ export default function Calendar({
   activeDay,
   granularity,
   ...props
-}: CalendarProps) {
+}: ICalendarProps) {
   const elRef = useRef<HTMLDivElement | null>(null);
   const [calendar, setCalendar] = useState<CalendarModel>();
 

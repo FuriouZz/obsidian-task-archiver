@@ -1,6 +1,6 @@
 import { CALENDAR_VIEW_TYPE } from "constants.js";
 import { Plugin } from "obsidian";
-import CalendarView from "view";
+import CalendarView from "views/CalendarView";
 
 // Remember to rename these classes and interfaces!
 
