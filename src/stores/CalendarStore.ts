@@ -1,6 +1,6 @@
 import { signal } from "@preact/signals";
 import { moment } from "obsidian";
-import { TaskListEntry } from "types";
+import { NoteListEntry } from "types";
 
 async function fetchFiles(
   day: moment.Moment | undefined,
@@ -28,7 +28,7 @@ async function fetchFiles(
 function createCalendarStore() {
   const date = signal<moment.Moment | undefined>(undefined);
   const granularity = signal<"day" | "week">("day");
-  const entries = signal<TaskListEntry[]>([]);
+  const entries = signal<NoteListEntry[]>([]);
 
   const store = {
     date,

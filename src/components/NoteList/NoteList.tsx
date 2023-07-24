@@ -1,12 +1,12 @@
 import { Signal } from "@preact/signals";
-import { TaskListEntry } from "types";
+import { NoteListEntry } from "types";
 
-export interface ITaskListProps {
-  entries: Signal<TaskListEntry[]>;
-  onOpenEntry: (entry: TaskListEntry) => void;
+export interface INoteListProps {
+  entries: Signal<NoteListEntry[]>;
+  onOpenEntry: (entry: NoteListEntry) => void;
 }
 
-export default function TaskList(props: ITaskListProps) {
+export default function NoteList(props: INoteListProps) {
   return (
     <ul>
       {props.entries.value.map((entry) => {

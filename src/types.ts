@@ -1,6 +1,6 @@
 import { TFile } from "obsidian";
 
-export interface TaskListEntry {
+export interface NoteListEntry {
   filename: string;
   title: string;
   excerpt: string;

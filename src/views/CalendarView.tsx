@@ -8,8 +8,8 @@ import {
 } from "constants.js";
 import CalendarStore from "stores/CalendarStore";
 import noteSource from "sources/NoteSource";
-import TaskList from "components/TaskList/TaskList";
-import { TaskListEntry } from "types";
+import NoteList from "components/NoteList/NoteList";
+import { NoteListEntry } from "types";
 
 export default class CalendarView extends ItemView {
   constructor(leaf: WorkspaceLeaf) {
@@ -49,7 +49,7 @@ export default class CalendarView extends ItemView {
           onClickDay={this.onClickDay}
           onClickWeek={this.onClickWeek}
         />
-        <TaskList
+        <NoteList
           entries={CalendarStore.entries}
           onOpenEntry={this.onOpenEntry}
         />
@@ -72,7 +72,7 @@ export default class CalendarView extends ItemView {
     CalendarStore.date.value = day;
   }
 
-  onOpenEntry(entry: TaskListEntry) {
+  onOpenEntry(entry: NoteListEntry) {
     const leaf = app.workspace.getLeaf(false);
     leaf.openFile(entry.file);
   }
