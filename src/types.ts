@@ -7,3 +7,9 @@ export interface NoteListEntry {
   date: moment.Moment;
   file: TFile;
 }
+
+export interface TodayPluginSettings {
+  filenameFormat: string;
+  dirnameFormat: string;
+  directoryPath: string;
+}

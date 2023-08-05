@@ -1,45 +1,26 @@
-import { CALENDAR_VIEW_TYPE } from "constants.js";
 import { Plugin } from "obsidian";
-import CalendarView from "views/CalendarView";
+import AbstractModule from "./lib/modules/AbstractModule.js";
+import CalendarModule from "./lib/modules/CalendarModule.js";
+import SendActionModule from "./lib/modules/SendActionModule.js";
+import { TodayPluginSettings } from "./types.js";
+import { DEFAULT_SETTINGS } from "./constants.js";
+import { TodayPluginSettingTab } from "./lib/TodayPluginSettingTab.js";
 
-// Remember to rename these classes and interfaces!
-
-interface MyPluginSettings {
-  mySetting: string;
-}
-
-const DEFAULT_SETTINGS: MyPluginSettings = {
-  mySetting: "default",
-};
-
-export default class MyPlugin extends Plugin {
-  settings: MyPluginSettings;
+export default class TodayPlugin extends Plugin {
+  settings: TodayPluginSettings;
+  modules: AbstractModule[] = [];
 
   async onload() {
     await this.loadSettings();
 
-    this.registerView(CALENDAR_VIEW_TYPE, (leaf) => new CalendarView(leaf));
+    this.addSettingTab(new TodayPluginSettingTab(this));
 
-    this.app.workspace.onLayoutReady(() => {
-      this.activateView();
-    });
+    this.modules.push(new CalendarModule(this), new SendActionModule(this));
+    this.modules.forEach((mod) => mod.onload());
   }
 
   onunload() {
-    this.app.workspace.detachLeavesOfType(CALENDAR_VIEW_TYPE);
-  }
-
-  async activateView() {
-    this.app.workspace.detachLeavesOfType(CALENDAR_VIEW_TYPE);
-
-    await this.app.workspace.getRightLeaf(false).setViewState({
-      type: CALENDAR_VIEW_TYPE,
-      active: true,
-    });
-
-    this.app.workspace.revealLeaf(
-      this.app.workspace.getLeavesOfType(CALENDAR_VIEW_TYPE)[0]
-    );
+    this.modules.forEach((mod) => mod.onunload());
   }
 
   async loadSettings() {
