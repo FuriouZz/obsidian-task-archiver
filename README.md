@@ -4,6 +4,10 @@ An Obsidian plugin for creating daily notes from completed tasks.
 
 ### Changelogs
 
+#### 0.0.4
+
+Support [BRAT - Beta Reviewer's Auto-update Tool for Obsidian](https://github.com/TfTHacker/obsidian42-brat) plugin
+
 #### 0.0.3
 
 Do not reveal calendar at startup
