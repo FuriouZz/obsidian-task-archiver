@@ -4,6 +4,10 @@ An Obsidian plugin for creating daily notes from completed tasks.
 
 ### Changelogs
 
+#### 0.0.3
+
+Do not reveal calendar at startup
+
 #### 0.0.2
 
 Add the ability to create a daily note from completed tasks.
