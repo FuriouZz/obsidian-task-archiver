@@ -19,15 +19,12 @@ export default class CalendarModule extends AbstractModule {
   }
 
   async activateView() {
-    this.app.workspace.detachLeavesOfType(CALENDAR_VIEW_TYPE);
+    if (this.app.workspace.getLeavesOfType(CALENDAR_VIEW_TYPE).length > 0) {
+      return;
+    }
 
     await this.app.workspace.getRightLeaf(false).setViewState({
       type: CALENDAR_VIEW_TYPE,
-      active: false,
     });
-
-    this.app.workspace.revealLeaf(
-      this.app.workspace.getLeavesOfType(CALENDAR_VIEW_TYPE)[0]
-    );
   }
 }
