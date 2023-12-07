@@ -3,7 +3,7 @@ import CalendarView from "../../views/CalendarView.js";
 import AbstractModule from "./AbstractModule.js";
 
 export default class CalendarModule extends AbstractModule {
-  onload() {
+  onLoad() {
     this.plugin.registerView(
       CALENDAR_VIEW_TYPE,
       (leaf) => new CalendarView(leaf)
@@ -14,7 +14,7 @@ export default class CalendarModule extends AbstractModule {
     });
   }
 
-  onunload(): void {
+  onUnload(): void {
     this.app.workspace.detachLeavesOfType(CALENDAR_VIEW_TYPE);
   }
 

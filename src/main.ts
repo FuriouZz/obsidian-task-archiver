@@ -5,6 +5,7 @@ import SendActionModule from "./lib/modules/SendActionModule.js";
 import { TodayPluginSettings } from "./types.js";
 import { DEFAULT_SETTINGS } from "./constants.js";
 import { TodayPluginSettingTab } from "./lib/TodayPluginSettingTab.js";
+import InteractiveBlockModule from "./lib/modules/InteractiveBlockModule.js";
 
 export default class TodayPlugin extends Plugin {
   settings: TodayPluginSettings;
@@ -15,12 +16,16 @@ export default class TodayPlugin extends Plugin {
 
     this.addSettingTab(new TodayPluginSettingTab(this));
 
-    this.modules.push(new CalendarModule(this), new SendActionModule(this));
-    this.modules.forEach((mod) => mod.onload());
+    this.modules.push(
+      new CalendarModule(this),
+      new SendActionModule(this),
+      new InteractiveBlockModule(this)
+    );
+    this.modules.forEach((mod) => mod.onLoad());
   }
 
   onunload() {
-    this.modules.forEach((mod) => mod.onunload());
+    this.modules.forEach((mod) => mod.onUnload());
   }
 
   async loadSettings() {

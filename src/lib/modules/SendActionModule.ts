@@ -5,11 +5,10 @@ import AbstractModule from "./AbstractModule.js";
 export default class SendActionModule extends AbstractModule {
   sendAction?: HTMLElement | undefined;
   text: HTMLDivElement;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  #timeoutID: any;
+  #timeoutID: unknown;
   parser: Parser;
 
-  onload() {
+  onLoad() {
     this.parser = new Parser(this.plugin);
 
     this.text = document.createElement("div");
@@ -52,7 +51,7 @@ export default class SendActionModule extends AbstractModule {
   };
 
   #onActionClick = async () => {
-    clearTimeout(this.#timeoutID);
+    clearTimeout(this.#timeoutID as number);
     this.text.style.display = "none";
     await this.#commitTasks();
     this.text.style.display = "";

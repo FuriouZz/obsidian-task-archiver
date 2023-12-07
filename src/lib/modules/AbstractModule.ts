@@ -11,6 +11,7 @@ export default abstract class AbstractModule {
     return this.plugin.app;
   }
 
-  onload() {}
-  onunload() {}
+  onLoad() {}
+
+  onUnload() {}
 }
