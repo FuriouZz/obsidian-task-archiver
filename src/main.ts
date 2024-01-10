@@ -1,38 +1,25 @@
 import { Plugin } from "obsidian";
 import AbstractModule from "./lib/modules/AbstractModule.js";
 import CalendarModule from "./lib/modules/CalendarModule.js";
-import SendActionModule from "./lib/modules/SendActionModule.js";
-import { TodayPluginSettings } from "./types.js";
-import { DEFAULT_SETTINGS } from "./constants.js";
-import { TodayPluginSettingTab } from "./lib/TodayPluginSettingTab.js";
-import InteractiveBlockModule from "./lib/modules/InteractiveBlockModule.js";
+import { TodayPluginSettingTab } from "./lib/obsidian/TodayPluginSettingTab.js";
+import TaskMoverModule from "./lib/modules/TaskMoverModule.js";
+import PluginStore from "./stores/PluginStore.js";
+import ConfigStore from "./stores/ConfigStore.js";
 
 export default class TodayPlugin extends Plugin {
-  settings: TodayPluginSettings;
   modules: AbstractModule[] = [];
 
   async onload() {
-    await this.loadSettings();
+    PluginStore.setPlugin(this);
+    await ConfigStore.load(PluginStore.loadData);
 
-    this.addSettingTab(new TodayPluginSettingTab(this));
+    this.addSettingTab(new TodayPluginSettingTab(app, this));
 
-    this.modules.push(
-      new CalendarModule(this),
-      new SendActionModule(this),
-      new InteractiveBlockModule(this)
-    );
+    this.modules.push(new CalendarModule(this), new TaskMoverModule(this));
     this.modules.forEach((mod) => mod.onLoad());
   }
 
   onunload() {
     this.modules.forEach((mod) => mod.onUnload());
-  }
-
-  async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-  }
-
-  async saveSettings() {
-    await this.saveData(this.settings);
   }
 }

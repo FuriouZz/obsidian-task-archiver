@@ -1,5 +1,5 @@
 import { CALENDAR_VIEW_TYPE } from "../../constants.js";
-import CalendarView from "../../views/CalendarView.js";
+import CalendarView from "../obsidian/CalendarView.js";
 import AbstractModule from "./AbstractModule.js";
 
 export default class CalendarModule extends AbstractModule {

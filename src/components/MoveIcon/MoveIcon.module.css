@@ -1,0 +1,12 @@
+.Root {
+  display: none;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  transform: translate(10px, 0px);
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+:global(.cm-line):hover .Root {
+  display: inline-block;
+}

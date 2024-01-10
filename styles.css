@@ -1,8 +1,13 @@
-/*
-
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
-*/
+/* src/components/MoveIcon/MoveIcon.module.css */
+.MoveIcon_Root {
+  display: none;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  transform: translate(10px, 0px);
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+.cm-line:hover .MoveIcon_Root {
+  display: inline-block;
+}
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsic3JjL2NvbXBvbmVudHMvTW92ZUljb24vTW92ZUljb24ubW9kdWxlLmNzcyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiLlJvb3Qge1xuICBkaXNwbGF5OiBub25lO1xuICBoZWlnaHQ6IHZhcigtLWljb24tc2l6ZSk7XG4gIHdpZHRoOiB2YXIoLS1pY29uLXNpemUpO1xuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgxMHB4LCAwcHgpO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIHZlcnRpY2FsLWFsaWduOiB0ZXh0LWJvdHRvbTtcbn1cblxuOmdsb2JhbCguY20tbGluZSk6aG92ZXIgLlJvb3Qge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG59XG4iXSwKICAibWFwcGluZ3MiOiAiO0FBQUEsQ0FBQ0E7QUFDQyxXQUFTO0FBQ1QsVUFBUSxJQUFJO0FBQ1osU0FBTyxJQUFJO0FBQ1gsYUFBVyxVQUFVLElBQUksRUFBRTtBQUMzQixtQkFBaUI7QUFDakIsa0JBQWdCO0FBQ2xCO0FBRVEsQ0FBQyxPQUFRLE9BQU8sQ0FUdkJBO0FBVUMsV0FBUztBQUNYOyIsCiAgIm5hbWVzIjogWyJSb290Il0KfQo= */

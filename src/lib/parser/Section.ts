@@ -1,5 +1,6 @@
 import { HeadingCache } from "obsidian";
 import Task from "./Task.js";
+import { TFilterCallback } from "../../types.js";
 
 export default class Section {
   heading: HeadingCache;
@@ -18,12 +19,16 @@ export default class Section {
     this.tasks = [];
   }
 
+  get title() {
+    return this.heading.heading;
+  }
+
   addTask(...tasks: Task[]) {
     for (const task of tasks) {
-      const index = this.tasks.findIndex((t) => t.title === task.title);
-      if (index === -1) {
-        this.tasks.push(task);
+      if (task.lineNumber <= this.lineNumber) {
+        task.lineNumber = this.lineNumber + this.tasks.length + 1;
       }
+      this.tasks.push(task);
     }
   }
 
@@ -34,16 +39,28 @@ export default class Section {
 
   getContent() {
     return this.tasks
-      .filter((task) => task.isChecked)
-      .map((task) => `* [-] ${task.toString()}`)
+      .map((task) => `* [${task.isChecked ? "-" : " "}] ${task.toString()}`)
       .join("\n");
   }
 
-  hasCheckedTask() {
+  hasTasks() {
+    return this.tasks.length > 0;
+  }
+
+  hasCheckedTasks() {
     return this.tasks.some((task) => task.isChecked);
   }
 
   hasAllTaskChecked() {
     return this.tasks.every((task) => task.isChecked);
+  }
+
+  toFiltered(filter: TFilterCallback<Task>) {
+    const section = new Section({
+      heading: this.heading,
+      lineNumber: this.lineNumber,
+    });
+    section.tasks = this.tasks.filter((task) => filter(task));
+    return section;
   }
 }

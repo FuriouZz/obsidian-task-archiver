@@ -17,7 +17,7 @@ async function fetchFiles(
   const items = files.map(async (file) => ({
     filename: file.path,
     title: file.basename,
-    excerpt: await this.app.vault.cachedRead(file),
+    excerpt: await app.vault.cachedRead(file),
     date: moment(file.stat.ctime),
     file,
   }));
