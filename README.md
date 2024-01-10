@@ -4,6 +4,14 @@ An Obsidian plugin for creating daily notes from completed tasks.
 
 ### Changelogs
 
+### 0.0.5
+
+Add ability to move tasks to another note.
+
+- feat: a new button is introduced near the task to move it to another note
+- feat: a new button is introduced near the heading to move checked task to the daily note
+- break: the sync button at top-right has been removed. Use the new button near the heading
+
 #### 0.0.4
 
 Support [BRAT - Beta Reviewer's Auto-update Tool for Obsidian](https://github.com/TfTHacker/obsidian42-brat) plugin
