@@ -1,10 +1,11 @@
 {
-  "name": "today",
-  "version": "0.0.4",
+  "name": "task-archiver",
+  "version": "0.0.6",
   "description": "This is a sample plugin for Obsidian (https://obsidian.md)",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
+    "lint": "biome lint src/ && tsc -noEmit -skipLibCheck",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
     "version": "node version-bump.mjs && git add manifest.json versions.json package.json README.md"
   },
@@ -17,21 +18,20 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^16.11.6",
-    "@typescript-eslint/eslint-plugin": "5.29.0",
-    "@typescript-eslint/parser": "5.29.0",
+    "@types/node": "^16.18.126",
     "builtin-modules": "3.3.0",
     "esbuild": "0.17.3",
-    "obsidian": "latest",
+    "obsidian": "^1.8.7",
     "tslib": "2.4.0",
-    "typescript": "5.2.2"
+    "typescript": "5.8.3"
   },
   "dependencies": {
-    "@preact/signals": "^1.1.3",
+    "@preact/signals": "^1.3.2",
     "obsidian-calendar-ui": "^0.3.12",
     "obsidian-daily-notes-interface": "^0.9.4",
-    "preact": "^10.13.2",
-    "preact-render-to-string": "^6.0.2",
-    "svelte": "^3.58.0"
-  }
+    "preact": "^10.26.9",
+    "preact-render-to-string": "^6.5.13",
+    "svelte": "^3.59.2"
+  },
+  "packageManager": "pnpm@10.7.1"
 }

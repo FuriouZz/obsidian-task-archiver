@@ -1,33 +1,37 @@
 import { Plugin } from "obsidian";
-import AbstractModule from "./lib/modules/AbstractModule.js";
+import { DEFAULT_SETTINGS } from "./constants.js";
+import type AbstractModule from "./lib/modules/AbstractModule.js";
 import CalendarModule from "./lib/modules/CalendarModule.js";
 import SendActionModule from "./lib/modules/SendActionModule.js";
-import { TodayPluginSettings } from "./types.js";
-import { DEFAULT_SETTINGS } from "./constants.js";
-import { TodayPluginSettingTab } from "./lib/TodayPluginSettingTab.js";
+import { SettingTab } from "./lib/SettingTab.js";
+import type { Settings } from "./types.js";
 
-export default class TodayPlugin extends Plugin {
-  settings: TodayPluginSettings;
-  modules: AbstractModule[] = [];
+export default class TaskArchiverPlugin extends Plugin {
+    settings: Settings;
+    modules: AbstractModule[] = [];
 
-  async onload() {
-    await this.loadSettings();
+    async onload() {
+        await this.loadSettings();
 
-    this.addSettingTab(new TodayPluginSettingTab(this));
+        this.addSettingTab(new SettingTab(this));
 
-    this.modules.push(new CalendarModule(this), new SendActionModule(this));
-    this.modules.forEach((mod) => mod.onload());
-  }
+        this.modules.push(new CalendarModule(this), new SendActionModule(this));
+        for (const mod of this.modules) mod.onload();
+    }
 
-  onunload() {
-    this.modules.forEach((mod) => mod.onunload());
-  }
+    onunload() {
+        for (const mod of this.modules) mod.onunload();
+    }
 
-  async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-  }
+    async loadSettings() {
+        this.settings = Object.assign(
+            {},
+            DEFAULT_SETTINGS,
+            await this.loadData(),
+        );
+    }
 
-  async saveSettings() {
-    await this.saveData(this.settings);
-  }
+    async saveSettings() {
+        await this.saveData(this.settings);
+    }
 }

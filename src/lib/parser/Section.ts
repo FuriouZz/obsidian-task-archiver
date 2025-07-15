@@ -1,49 +1,49 @@
-import { HeadingCache } from "obsidian";
-import Task from "./Task.js";
+import type { HeadingCache } from "obsidian";
+import type Task from "./Task.js";
 
 export default class Section {
-  heading: HeadingCache;
-  tasks: Task[];
-  lineNumber: number;
-
-  constructor({
-    heading,
-    lineNumber,
-  }: {
     heading: HeadingCache;
+    tasks: Task[];
     lineNumber: number;
-  }) {
-    this.heading = heading;
-    this.lineNumber = lineNumber;
-    this.tasks = [];
-  }
 
-  addTask(...tasks: Task[]) {
-    for (const task of tasks) {
-      const index = this.tasks.findIndex((t) => t.title === task.title);
-      if (index === -1) {
-        this.tasks.push(task);
-      }
+    constructor({
+        heading,
+        lineNumber,
+    }: {
+        heading: HeadingCache;
+        lineNumber: number;
+    }) {
+        this.heading = heading;
+        this.lineNumber = lineNumber;
+        this.tasks = [];
     }
-  }
 
-  getHeader() {
-    const level = new Array(this.heading.level).fill("#").join("");
-    return `${level} ${this.heading.heading}`;
-  }
+    addTask(...tasks: Task[]) {
+        for (const task of tasks) {
+            const index = this.tasks.findIndex((t) => t.title === task.title);
+            if (index === -1) {
+                this.tasks.push(task);
+            }
+        }
+    }
 
-  getContent() {
-    return this.tasks
-      .filter((task) => task.isChecked)
-      .map((task) => `* [-] ${task.toString()}`)
-      .join("\n");
-  }
+    getHeader() {
+        const level = new Array(this.heading.level).fill("#").join("");
+        return `${level} ${this.heading.heading}`;
+    }
 
-  hasCheckedTask() {
-    return this.tasks.some((task) => task.isChecked);
-  }
+    getContent() {
+        return this.tasks
+            .filter((task) => task.isChecked)
+            .map((task) => `* [-] ${task.toString()}`)
+            .join("\n");
+    }
 
-  hasAllTaskChecked() {
-    return this.tasks.every((task) => task.isChecked);
-  }
+    hasCheckedTask() {
+        return this.tasks.some((task) => task.isChecked);
+    }
+
+    hasAllTaskChecked() {
+        return this.tasks.every((task) => task.isChecked);
+    }
 }

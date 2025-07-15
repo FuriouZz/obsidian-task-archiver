@@ -1,0 +1,241 @@
+{
+  "main": {
+    "id": "f708f1d81aa8419a",
+    "type": "split",
+    "children": [
+      {
+        "id": "dc0d7fcf482e3d12",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e87ce25e092ca5e0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Tasks.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Tasks"
+            }
+          },
+          {
+            "id": "ea8829ed6cca3506",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Tasks.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Tasks"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2f8f4326391842b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "5fe68c5f690048f4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c262ce4aa8a9ade9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "74f6ac7833cfccd8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "95bb203ff4f9544d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4069e4a2873e2f4f",
+    "type": "split",
+    "children": [
+      {
+        "id": "767cebdc85e7d9a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b2b4186936391489",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "01f2f436dc390fb5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "337de75bb416bfe3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "622a203defc12b38",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "f343da3370e8da11",
+            "type": "leaf",
+            "state": {
+              "type": "calendar-view",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "calendar-view"
+            }
+          },
+          {
+            "id": "3c1848f744797530",
+            "type": "leaf",
+            "state": {
+              "type": "calendar-view",
+              "state": {},
+              "icon": "calendar-days",
+              "title": "Calendar"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "ea8829ed6cca3506",
+  "lastOpenFiles": [
+    "Archives.md",
+    "Tasks.md",
+    "daily/2025/07/2025-07-15.md",
+    "Today.md",
+    "2025/07/2025-07-15.md",
+    "2025/07",
+    "2025",
+    "templates/Daily Note Template.md",
+    "daily/2025/07",
+    "daily/2025",
+    "daily",
+    "templates",
+    "tasks/202507151516 1.md",
+    "tasks/202507151516.md",
+    "templates/Without Javascript.md",
+    "tasks",
+    "Sample.md",
+    "Welcome.md",
+    "templates/With Javascript.md",
+    "templates/Template 2.md",
+    "templates/Functions.md",
+    "tasks/202507151251.md",
+    "tasks/202507151250.md",
+    "toto.md",
+    "tpls/Daily Template.md",
+    "daily/2025-07-14.md",
+    "tasks/202507120956.md",
+    "daily",
+    "tpls",
+    "tasks/202507120952.md",
+    "tasks/202507120945.md",
+    "tasks/202507120944.md",
+    "tasks/202507120943.md",
+    "tasks/202507120941.md",
+    "tasks/202507120124"
+  ]
+}
