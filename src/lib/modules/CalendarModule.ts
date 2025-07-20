@@ -9,9 +9,9 @@ export default class CalendarModule extends AbstractModule {
             (leaf) => new CalendarView(leaf),
         );
 
-        this.app.workspace.onLayoutReady(() => {
-            this.activateView();
-        });
+        // this.app.workspace.onLayoutReady(() => {
+        //     this.activateView();
+        // });
     }
 
     onunload(): void {
